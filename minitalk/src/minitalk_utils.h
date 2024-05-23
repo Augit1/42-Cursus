@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   minitalk_utils.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 13:32:10 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/23 11:12:35 by aude-la-         ###   ########.fr       */
+/*   Created: 2024/05/22 18:42:34 by aude-la-          #+#    #+#             */
+/*   Updated: 2024/05/23 13:38:17 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef MINITALK_UTILS_H
+# define MINITALK_UTILS_H
 
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "ft_printf.h"
+# include "utils.h"
 
-int		ft_atoi(const char *str);
-char	*ft_itoa(int n);
-int		is_all_zeroes(const char *str);
-int		ft_strlen(char *s);
+char	bit_to_c(char *octet);
+int		manage_sig(int sig, pid_t sender_pid);
+void	secure_kill(pid_t pid, int sig);
+void	print_init(char **txt, int *l);
 
 #endif

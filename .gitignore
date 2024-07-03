@@ -1,0 +1,5 @@
+# Ignore tous les fichiers commencant par un point
+.*
+# Sauf les fichiers spécifiés
+!.gitignore
+!.gitattributes

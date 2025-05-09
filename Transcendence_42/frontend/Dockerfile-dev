@@ -1,0 +1,24 @@
+# Base image for development
+FROM node:alpine
+
+# Install PNPM globally using npm
+RUN npm install -g pnpm
+
+# Set the working directory
+WORKDIR /app
+
+# Copy dependency management files
+COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies with PNPM
+RUN pnpm install 
+#--frozen-lockfile
+
+# Copy the entire application code
+COPY . .
+
+# Expose port 3000 (default for React dev server)
+EXPOSE 3000
+
+# Command to start the development server
+CMD ["pnpm", "start"]

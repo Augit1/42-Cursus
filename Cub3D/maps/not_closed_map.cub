@@ -1,0 +1,12 @@
+NO ./textures/Lava.xpm
+SO ./textures/WalkStone.xpm
+WE ./textures/Tree.xpm
+EA ./textures/Ice.xpm
+F 0,100,100
+C 100,100,0
+
+111111
+100001
+1000N1
+100000
+111111

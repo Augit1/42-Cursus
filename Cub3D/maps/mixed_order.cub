@@ -1,0 +1,16 @@
+F 220,220,220
+EA ./textures/Ice.xpm
+C 100,50,50
+WE ./textures/Tree.xpm
+
+SO ./textures/WalkStone.xpm
+NO ./textures/Lava.xpm
+
+111111111
+100000001
+10N000001
+100110001
+101000101
+101000101
+100000001
+111111111

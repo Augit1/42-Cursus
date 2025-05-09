@@ -6,8 +6,8 @@
 
 NAME		=	philo
 
-CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CC			=	clang
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=thread
 LDFLAGS		=	-lpthread
 
 
@@ -15,9 +15,10 @@ SRC_DIR		=	./src
 OBJ_DIR		=	./obj
 
 
-SRC			=	$(SRC_DIR)/philo.c \
+SRC			=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/ft_atoi.c \
 				$(SRC_DIR)/initialisation.c \
+				$(SRC_DIR)/dead.c \
 				$(SRC_DIR)/check.c \
 				$(SRC_DIR)/utils.c \
 

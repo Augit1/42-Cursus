@@ -1,0 +1,141 @@
+.menu-container {
+    margin: 2em;
+}
+
+/* .game-container {
+} */
+
+.gameplay-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.game-return {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.game-return button {
+    padding: 10px 20px;
+    width: 17%;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #3aa53a;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.game-return button:hover {
+    background-color: #0b5ed7;
+}
+
+.game-canvas {
+    border: 2px solid #262a2e;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.game-controls {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.controls-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    color: white;
+    margin: 0;
+}
+
+.controls-paddles {
+    display: flex;
+    justify-content: space-between;
+    width: var(--canvas-width, 800px);
+    max-width: 100%;
+}
+
+.controls-paddles p {
+    margin: 0;
+    font-size: clamp(12px, 2vw, 16px);
+    color: #666;
+}
+
+.game-specs {
+    color: #666;
+    text-align: center;
+    justify-content: center;
+}
+
+.loader {
+    height: 86px;
+    aspect-ratio: 1.5;
+    position: relative;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+}
+
+.loader:before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    width: 8px;
+    background: #FFF;
+    height: 80%;
+}
+
+.loader:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #0d6efd;
+    animation: ballBounce 1s cubic-bezier(0.4, 0, 0.6, 1) infinite alternate;
+}
+
+.loader .wall-right {
+    content: "";
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    background: #FFF;
+    height: 80%;
+}
+
+@keyframes ballBounce {
+    0% {
+        left: 10px;
+    }
+    50% {
+        left: calc(100% - 35px);
+    }
+    100% {
+        left: 10px;
+    }
+}
+
+.tournament-info {
+    line-height: 1.5;
+}
+
+@media (min-width: 900px) {
+.tournament-info { padding-left: 10em; padding-right: 10em }
+}

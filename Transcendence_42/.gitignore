@@ -1,0 +1,10 @@
+# Ignore virtual environments
+virtualenv/
+venv/
+backend/static/
+dump.rdb
+#.env/
+*.pyc
+__pycache__/
+package-lock.json
+package.json

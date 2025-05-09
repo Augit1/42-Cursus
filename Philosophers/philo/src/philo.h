@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:53 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/07/03 17:38:51 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:00:00 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define COLOR_THINKING "\033[1;33m"
 # define COLOR_EATING   "\033[1;35m"
 # define COLOR_SLEEPING "\033[1;34m"
+# define COLOR_FORK "\033[1;36m"
 # define COLOR_DIED	"\033[1;31m"
 
 typedef struct s_philo
@@ -49,14 +50,25 @@ typedef struct s_data
 	int				dead;
 	pthread_mutex_t	*forks;
 	t_philo			*philo;
-	pthread_mutex_t	is_died;
+	pthread_mutex_t	is_dead;
 	pthread_mutex_t	last_meal_mtx;
 	long			start_time;
 }				t_data;
 
+typedef enum e_state
+{
+	IS_EATING,
+	IS_SLEEPING,
+	IS_THINKING,
+	TAKE_FORK,
+	IS_DEAD,
+}			t_state;
+
 long	get_current_timestamp(void);
 long	running_time(t_data *data);
 void	*philolife(void *arg);
+void	print_state(t_state state, t_philo *philo);
+void	*monitor_function(t_data *data);
 int		precise_sleep(t_philo *philo, long ms);
 int		dead_check(t_philo *philo);
 int		unlock_forks(t_philo *philo);

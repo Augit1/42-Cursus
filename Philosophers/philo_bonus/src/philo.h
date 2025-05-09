@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:53 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/07/03 17:44:04 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:27:36 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <errno.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <signal.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <sys/types.h>
@@ -52,10 +53,18 @@ typedef struct s_data
 	int			nb_of_eat_required;
 	sem_t		*forks;
 	t_philo		*philo;
-	sem_t		*is_died;
+	sem_t		*is_dead;
 	sem_t		*last_meal_sem;
 	long		start_time;
 }				t_data;
+
+typedef enum e_state
+{
+	IS_EATING,
+	IS_SLEEPING,
+	IS_THINKING,
+	IS_DEAD,
+}			t_state;
 
 long	get_current_timestamp(void);
 long	running_time(t_data *data);
@@ -70,6 +79,7 @@ int		dead_check(t_philo *philo);
 void	wait_philo(t_data *data);
 void	philolife(t_philo *philo);
 void	clean_semaphores(t_data *data);
+void	print_state(t_state state, t_philo *philo);
 int		ft_atoi(const char *str);
 
 #endif

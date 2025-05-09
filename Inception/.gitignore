@@ -1,0 +1,13 @@
+# Ignore the environnement files
+.env
+
+# Ignore temporaries env files .env
+.env.*
+
+# Ignore logs
+*.log
+
+# Ignore temp and backup files
+*.bak
+*.tmp
+

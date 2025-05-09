@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:26:03 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/06/29 18:00:32 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:42:09 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	args_init(int argc, char **argv, t_data *data)
 		data->nb_of_eat_required = ft_atoi(argv[5]);
 	else
 		data->nb_of_eat_required = -1;
+	if (data->nb_of_eat_required == 0)
+		return (printf("Error: nb of eat can't be 0\n"), ERROR);
 	return (0);
 }
 
@@ -37,7 +39,7 @@ int	init(t_data *data)
 	data->forks = malloc(data->nb_of_philo * sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (ERROR);
-	pthread_mutex_init(&data->is_died, NULL);
+	pthread_mutex_init(&data->is_dead, NULL);
 	data->dead = 0;
 	i = -1;
 	while (++i < data->nb_of_philo)
@@ -53,9 +55,24 @@ int	init(t_data *data)
 	return (0);
 }
 
+void	*monitor_function(t_data *data)
+{
+	int		i;
+
+	while (1)
+	{
+		i = -1;
+		while (++i < data->nb_of_philo)
+			if (dead_check(&data->philo[i]))
+				return (NULL);
+		usleep(1000);
+	}
+	return (NULL);
+}
+
 int	init_threads(t_data *data)
 {
-	int	i;
+	int			i;
 
 	pthread_mutex_init(&data->last_meal_mtx, NULL);
 	data->start_time = get_current_timestamp() + (data->nb_of_philo * 100);
@@ -64,6 +81,7 @@ int	init_threads(t_data *data)
 		if (pthread_create(&data->philo[i].thread,
 				NULL, philolife, &data->philo[i]) != 0)
 			return (1);
+	monitor_function(data);
 	i = -1;
 	while (++i < data->nb_of_philo)
 		if (pthread_join(data->philo[i].thread, NULL) != 0)

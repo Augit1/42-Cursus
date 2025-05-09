@@ -1,0 +1,98 @@
+.match-history-container {
+    padding: 20px;
+    background-color: #1e1e1e;
+    border: 1px solid #5e5d5d;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    width: 50%;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+.match-history-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.match-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.match-item {
+    background-color: #2e2e2e;
+    padding: 2em;
+    gap: 1em;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.match-item:hover {
+    background-color: #3a3a3a;
+}
+
+.match-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    
+}
+
+.match-date {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.match-type {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.match-type.multiplayer {
+    color: #4caf50; /* Green for multiplayer */
+}
+
+.match-type.singleplayer {
+    color: #4caf50; /* Red for singleplayer */
+}
+
+.match-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.player {
+    font-weight: bold;
+}
+
+.vs {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.match-duration {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #aaa;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .match-history-container {
+        width:fit-content;
+    }
+}

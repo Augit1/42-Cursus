@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+
+.login-container {
+    display: grid;
+    place-content: center;
+    text-align: center;
+    min-height: 100vh;
+    gap: 2em;
+    padding: 1em;
+}
+.header {
+    font-size: 4em;
+    font-family: "Honk", sans-serif;
+    font-size: 4em;
+    font-family: "Honk", sans-serif;
+}
+
+.login-wrapper {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 350px;
+    padding: 1.5em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    background-color:#343538;
+}
+
+.login-register-container {
+    display:flex;
+    padding-top: 1.3em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.register-form-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color:#343538;
+}
+
+.register-register-container {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.text-muted-email {
+    color: rgba(255,255,255,0.7);
+    padding-top: 0.3em;
+    font-size: small;
+}
+
+.signin42-button {
+    background-color: #00babc !important; /* Custom background color */
+    border-color: #00babc !important;
+    display: flex !important;
+    justify-content: center;
+    gap: 0.8em !important;
+    font-weight: 600 !important;
+}
+
+.signin42-button:hover {
+    background-color: #039c9e !important;
+}

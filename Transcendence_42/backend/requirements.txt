@@ -1,0 +1,24 @@
+asgiref
+Django
+django-cors-headers
+djangorestframework
+djangorestframework-simplejwt
+daphne
+twisted[http2,tls]
+psycopg[binary]
+pytz
+sqlparse
+python-dotenv
+requests
+
+# 2FA
+django-otp
+qrcode
+pillow
+
+#Django channels for WebSocket
+channels
+django-channels-jwt
+
+# Blockchain
+web3==6.15.1

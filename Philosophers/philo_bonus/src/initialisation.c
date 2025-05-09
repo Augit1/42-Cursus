@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:26:03 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/07/03 16:50:57 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:15:45 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	args_init(int argc, char **argv, t_data *data)
 		data->nb_of_eat_required = ft_atoi(argv[5]);
 	else
 		data->nb_of_eat_required = -1;
+	if (data->nb_of_eat_required == 0)
+		return (printf("Error: nb of eat can't be 0\n"), ERROR);
 	return (0);
 }
 
@@ -38,8 +40,8 @@ int	init(t_data *data)
 	data->forks = sem_open("/forks", O_CREAT, 0644, data->nb_of_philo);
 	if (data->forks == SEM_FAILED)
 		return (ERROR);
-	data->is_died = sem_open("/is_died", O_CREAT, 0644, 1);
-	if (data->is_died == SEM_FAILED)
+	data->is_dead = sem_open("/is_dead", O_CREAT, 0644, 1);
+	if (data->is_dead == SEM_FAILED)
 		return (ERROR);
 	data->last_meal_sem = sem_open("/last_meal_sem", O_CREAT, 0644, 1);
 	if (data->last_meal_sem == SEM_FAILED)
@@ -57,7 +59,7 @@ int	init(t_data *data)
 
 int	init_process(t_data *data)
 {
-	int	i;
+	int		i;
 
 	data->start_time = get_current_timestamp();
 	i = -1;
@@ -78,27 +80,34 @@ int	init_process(t_data *data)
 void	wait_philo(t_data *data)
 {
 	int	i;
+	int	has_finished;
 	int	wstatus;
 
-	i = -1;
-	waitpid(-1, &wstatus, 0);
-	if (WIFEXITED(wstatus))
+	has_finished = 0;
+	while (1)
 	{
-		if (WEXITSTATUS(wstatus) == 4)
+		waitpid(-1, &wstatus, 0);
+		if (WIFEXITED(wstatus))
 		{
-			while (++i < data->nb_of_philo)
-				kill(data->philo[i].pid, SIGTERM);
-			sem_post(data->is_died);
+			if (WEXITSTATUS(wstatus) == 4)
+				break ;
+			if (WEXITSTATUS(wstatus) == 3)
+				has_finished++;
+			if (has_finished == data->nb_of_philo)
+				break ;
 		}
 	}
+	i = -1;
+	while (++i < data->nb_of_philo)
+		kill(data->philo[i].pid, SIGTERM);
 }
 
 void	clean_semaphores(t_data *data)
 {
 	sem_close(data->forks);
 	sem_unlink("/forks");
-	sem_close(data->is_died);
-	sem_unlink("/is_died");
+	sem_close(data->is_dead);
+	sem_unlink("/is_dead");
 	sem_close(data->last_meal_sem);
 	sem_unlink("/last_meal_sem");
 }
